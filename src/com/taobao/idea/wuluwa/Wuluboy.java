@@ -3,7 +3,6 @@ package com.taobao.idea.wuluwa;
 import com.intellij.openapi.components.ApplicationComponent;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
-import com.intellij.openapi.paths.PathReference;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.util.JDOMExternalizerUtil;
 import org.apache.commons.lang.StringUtils;
@@ -17,9 +16,9 @@ import javax.swing.*;
  */
 public class Wuluboy extends JDOMExternalizerUtil implements ApplicationComponent, Configurable {
     private WuluForm wuluForm;
-    private String srcPath;
+    private String srcPath = Constants.DEFAULT_SRC_PATH;
     private String frame;
-    private String destPath;
+    private String destPath = Constants.DEFAULT_DEST_PATH;
 
     public Wuluboy() {
     }
@@ -38,18 +37,19 @@ public class Wuluboy extends JDOMExternalizerUtil implements ApplicationComponen
     }
 
     public void lol(String filePath){
-        if(StringUtils.isBlank(filePath)){
-            addActionError("当前打开的文件为空。");
+        FileAnalysts fileAnalysts = new FileAnalysts();
+        String result = fileAnalysts.getDestFilePath(filePath, srcPath, destPath);
+        if(result.startsWith(Constants.ERROR_SIGN)){
+            showMessage(result);
             return;
         }
-        if(!filePath.contains(srcPath)){
-            addActionError("当前文件不符合路径格式。不包含路径：" + srcPath);
+        if(!fileAnalysts.copy(filePath, result)){
+            showMessage("文件拷贝失败。");
             return;
         }
-
     }
 
-    private void addActionError(String errorMsg) {
+    private void showMessage(String errorMsg) {
         Messages.showMessageDialog(errorMsg, "出错啦", Messages.getInformationIcon());
     }
 

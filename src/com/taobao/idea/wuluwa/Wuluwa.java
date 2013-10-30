@@ -10,7 +10,7 @@ import com.intellij.openapi.application.ApplicationManager;
  */
 public class Wuluwa extends AnAction {
     public void actionPerformed(AnActionEvent e) {
-        FilePathAnalysts fp = new FilePathAnalysts();
+        FileAnalysts fp = new FileAnalysts();
         e.getActionManager();
         String filePath = fp.getWindowFilePath(e.getProject());
         Application application = ApplicationManager.getApplication();
