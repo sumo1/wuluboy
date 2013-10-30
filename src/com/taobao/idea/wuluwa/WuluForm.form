@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.taobao.idea.wuluwa.WuluForm">
   <grid id="27dc6" binding="rootFrame" custom-create="true" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -60,6 +61,69 @@
     </children>
   </grid>
 </form>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.taobao.idea.wuluwa.WuluForm">
+  <grid id="27dc6" binding="rootFrame" custom-create="true" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="15" y="20" width="505" height="109"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="b28fa" class="javax.swing.JLabel" binding="labelSrc">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="请选择web工程所在的src目录下的webapp的地址："/>
+        </properties>
+      </component>
+      <component id="857f9" class="javax.swing.JTextField" binding="wordSrc">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="976" class="javax.swing.JButton" binding="buttonSrc">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="&amp;浏览..."/>
+        </properties>
+      </component>
+      <component id="4e80a" class="javax.swing.JLabel" binding="labelDest">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="请选择jboss运行web工程所在的目录地址："/>
+        </properties>
+      </component>
+      <component id="13b46" class="javax.swing.JTextField" binding="wordDest">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="250ee" class="javax.swing.JButton" binding="buttonDest">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="浏览..."/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
+>>>>>>> parent of f655be9... beta版本
 =======
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.taobao.idea.wuluwa.WuluForm">
