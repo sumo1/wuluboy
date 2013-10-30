@@ -2,18 +2,12 @@ package com.taobao.idea.wuluwa;
 
 import com.intellij.openapi.fileChooser.FileChooser;
 import com.intellij.openapi.fileChooser.FileChooserDescriptor;
-import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.jgoodies.forms.layout.CellConstraints;
-import com.jgoodies.forms.layout.FormLayout;
 
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -24,32 +18,17 @@ public class WuluForm {
     private JPanel rootFrame;
     private JTextField wordSrc;
     private JLabel labelSrc;
+    private JButton buttonSrc;
     private JTextField wordDest;
+    private JButton buttonDest;
     private JLabel labelDest;
-    private JButton testButton;
-    private String testSrcPath;
 
     public WuluForm() {
         $$$setupUI$$$();
-        testButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                FileChooserDescriptor fcd = new FileChooserDescriptor(true, true, false, false, false, false);
-                fcd.setDescription("文件目录");
-                fcd.setShowFileSystemRoots(true);
-                fcd.setTitle("请选择测试文件...");
-                VirtualFile vf = FileChooser.chooseFile(rootFrame, fcd);
-                if (null == vf) {
-                    return;
-                }
-                testSrcPath = vf.getPresentableUrl();
-                FileAnalysts fileAnalysts = new FileAnalysts();
-                String result = fileAnalysts.getDestFilePath(testSrcPath, wordSrc.getText(), wordDest.getText());
-                StringBuffer showMessage = new StringBuffer();
-                showMessage.append("源地址:").append(testSrcPath).append("\n").append("转换结果：").append(result);
-                Messages.showMessageDialog(showMessage.toString(), "Test结果", Messages.getInformationIcon());
-            }
-        });
+        buttonSrc.setText(Constants.DEFAULT_SRC_PATH);
+        buttonDest.setText(Constants.DEFAULT_DEST_PATH);
+        eventBindIDEA(buttonSrc, wordSrc);
+        eventBindIDEA(buttonDest, wordDest);
     }
 
     private void createUIComponents() {
@@ -95,30 +74,25 @@ public class WuluForm {
      */
     private void $$$setupUI$$$() {
         createUIComponents();
-        rootFrame.setLayout(new FormLayout("right:-146px:grow,left:4dlu:noGrow,fill:p:grow", "center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow"));
-        rootFrame.setAlignmentX(0.6f);
-        rootFrame.setAlignmentY(0.4f);
-        rootFrame.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-16777216)), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, new Color(-16777216)));
-        labelDest = new JLabel();
-        labelDest.setAlignmentY(0.4f);
-        labelDest.setText("请填写目标路径的替换地址：");
-        CellConstraints cc = new CellConstraints();
-        rootFrame.add(labelDest, cc.xy(1, 3, CellConstraints.RIGHT, CellConstraints.DEFAULT));
-        testButton = new JButton();
-        testButton.setText("Test路径");
-        rootFrame.add(testButton, cc.xy(3, 5, CellConstraints.LEFT, CellConstraints.DEFAULT));
-        wordSrc = new JTextField();
-        wordSrc.setPreferredSize(new Dimension(10, 23));
-        rootFrame.add(wordSrc, cc.xy(3, 1));
-        wordDest = new JTextField();
-        wordDest.setAlignmentX(0.4f);
-        wordDest.setPreferredSize(new Dimension(10, 23));
-        rootFrame.add(wordDest, cc.xy(3, 3));
+        rootFrame.setLayout(new GridLayoutManager(4, 2, new Insets(0, 0, 0, 0), -1, -1));
         labelSrc = new JLabel();
-        labelSrc.setAlignmentY(0.4f);
-        labelSrc.setAutoscrolls(false);
-        labelSrc.setText("请填写修改文件所在目录要替换的地址：");
-        rootFrame.add(labelSrc, cc.xy(1, 1, CellConstraints.RIGHT, CellConstraints.DEFAULT));
+        labelSrc.setText("请选择web工程所在的src目录下的webapp的地址：");
+        rootFrame.add(labelSrc, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        wordSrc = new JTextField();
+        rootFrame.add(wordSrc, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        buttonSrc = new JButton();
+        buttonSrc.setText("浏览...");
+        buttonSrc.setMnemonic('浏');
+        buttonSrc.setDisplayedMnemonicIndex(0);
+        rootFrame.add(buttonSrc, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        labelDest = new JLabel();
+        labelDest.setText("请选择jboss运行web工程所在的目录地址：");
+        rootFrame.add(labelDest, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        wordDest = new JTextField();
+        rootFrame.add(wordDest, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        buttonDest = new JButton();
+        buttonDest.setText("浏览...");
+        rootFrame.add(buttonDest, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

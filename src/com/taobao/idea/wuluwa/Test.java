@@ -1,17 +1,15 @@
 package com.taobao.idea.wuluwa;
 
+import java.io.File;
+import java.io.FilenameFilter;
+
 /**
  * Author: yunshu.xw
  */
 public class Test {
     public static void main(String[] args) {
-        String filePath = "D:\\workplace\\BR_zs_crm_42_daily_yunshu_20131023_merge\\zuanshi-crm-web\\src\\main\\webapp\\WEB-INF\\jsp\\adboard\\adboardAudit.jsp";
-        FileAnalysts fileAnalysts = new FileAnalysts();
-        System.out.println(fileAnalysts.getDestFilePath(filePath, Constants.DEFAULT_SRC_PATH, Constants.DEFAULT_DEST_PATH));
-        String srcPath = "D:\\1.txt";
-        String destPath = "D:\\output\\1.txt";
-        if(fileAnalysts.copy(srcPath, destPath)){
-            System.out.println(true);
-        }
+        String filePath = "D:\\workplace\\BR_zs_site_43_daily_yunshu_20131011\\zuanshi-site-web\\src\\main\\webapp\\build\\libs\\error.jsp";
+        FilePathAnalysts filePathAnalysts = new FilePathAnalysts();
+        System.out.println(filePathAnalysts.getDestFilePath(filePath, Constants.DEFAULT_SRC_PATH, Constants.DEFAULT_DEST_PATH));
     }
 }

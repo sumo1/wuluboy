@@ -39,9 +39,8 @@ on how to target different products -->
     <!-- Add your actions here -->
     <action id="wuluwa" class="com.taobao.idea.wuluwa.Wuluwa"
             text="wuluwa"
-            description="Copy src webapp files to target of war package" icon="/resource/wulu.png">
-        <add-to-group group-id="MainToolBar" relative-to-action="Forward" anchor="after"/>
-        <keyboard-shortcut first-keystroke="alt L" keymap="$default"/>
+            description="Generates an implementation of compareTo() using Guava ComparisonChain">
+        <add-to-group group-id="ToolsMenu" relative-to-action="GenerateJavadoc" anchor="last"/>
     </action>
 </actions>
 </idea-plugin>
